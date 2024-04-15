@@ -1,6 +1,7 @@
 package fr.amu.iut.exercice5;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -49,6 +50,8 @@ public class JeuMain extends Application {
      */
     private void deplacer(Personnage j1, Personnage j2) {
         scene.setOnKeyPressed((KeyEvent event) -> {
+            double prevPosX = j1.getLayoutX();
+            double prevPosY = j1.getLayoutY();
             switch (event.getCode()) {
                 case LEFT:
                     j1.deplacerAGauche();
@@ -56,13 +59,36 @@ public class JeuMain extends Application {
                 case RIGHT:
                     j1.deplacerADroite(scene.getWidth());
                     break;
-                case Z:
-                    //j2...... vers le haut;
+                case UP:
+                    j1.deplacerEnHaut();
                     break;
-
+                case DOWN:
+                    j1.deplacerEnBas(scene.getHeight());
+                    break;
+                case Q:
+                    j2.deplacerAGauche();
+                    break;
+                case D:
+                    j2.deplacerADroite(scene.getWidth());
+                    break;
+                case Z:
+                    j2.deplacerEnHaut();
+                    break;
+                case S:
+                    j2.deplacerEnBas(scene.getHeight());
+                    break;
             }
-            if (j1.estEnCollision(j2))
-                System.out.println("Collision....");
+            double PosX = j1.getLayoutX();
+            double PosY = j1.getLayoutY();
+            if (PosY >= root.getHeight()-1 || PosX >= root.getWidth()-1){
+                j1.setLayoutX(prevPosX);
+                j1.setLayoutY(prevPosY);
+            }
+            else if (j1.estEnCollision(j2)){
+                Platform.exit();
+            }
+            prevPosY = PosY;
+            prevPosX = PosX;
         });
     }
 
