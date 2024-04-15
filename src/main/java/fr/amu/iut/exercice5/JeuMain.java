@@ -50,8 +50,10 @@ public class JeuMain extends Application {
      */
     private void deplacer(Personnage j1, Personnage j2) {
         scene.setOnKeyPressed((KeyEvent event) -> {
-            double prevPosX = j1.getLayoutX();
-            double prevPosY = j1.getLayoutY();
+            double j1PrevPosX = j1.getLayoutX();
+            double j1PrevPosY = j1.getLayoutY();
+            double j2PrevPosX = j2.getLayoutX();
+            double j2PrevPosY = j2.getLayoutY();
             switch (event.getCode()) {
                 case LEFT:
                     j1.deplacerAGauche();
@@ -78,17 +80,25 @@ public class JeuMain extends Application {
                     j2.deplacerEnBas(scene.getHeight());
                     break;
             }
-            double PosX = j1.getLayoutX();
-            double PosY = j1.getLayoutY();
-            if (PosY >= root.getHeight()-1 || PosX >= root.getWidth()-1){
-                j1.setLayoutX(prevPosX);
-                j1.setLayoutY(prevPosY);
+            double j1PosX = j1.getLayoutX();
+            double j1PosY = j1.getLayoutY();
+            if (j1PosY >= root.getHeight()-1 || j1PosX >= root.getWidth()-1){
+                j1.setLayoutX(j1PrevPosX);
+                j1.setLayoutY(j1PrevPosY);
             }
-            else if (j1.estEnCollision(j2)){
+            double j2PosX = j2.getLayoutX();
+            double j2PosY = j2.getLayoutY();
+            if (j2PosY >= root.getHeight()-1 || j2PosX >= root.getWidth()-1){
+                j2.setLayoutX(j2PrevPosX);
+                j2.setLayoutY(j2PrevPosY);
+            }
+            if (j1.estEnCollision(j2)){
                 Platform.exit();
             }
-            prevPosY = PosY;
-            prevPosX = PosX;
+            j1PrevPosY = j1PosY;
+            j1PrevPosX = j1PosX;
+            j2PrevPosY = j2PosY;
+            j2PrevPosX = j2PosX;
         });
     }
 
