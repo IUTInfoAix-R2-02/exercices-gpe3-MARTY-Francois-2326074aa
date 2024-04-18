@@ -81,5 +81,8 @@ class Personnage extends Group {
         return getBoundsInParent().contains(autrePersonnage.getBoundsInParent())
                 || autrePersonnage.getBoundsInParent().contains(getBoundsInParent());
     }
-
+    boolean estEnCollision(Obstacle obstacle) {
+        return getBoundsInParent().contains(obstacle.getBoundsInParent())
+                || obstacle.getBoundsInParent().contains(getBoundsInParent());
+    }
 }
