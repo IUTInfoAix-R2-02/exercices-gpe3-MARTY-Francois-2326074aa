@@ -69,7 +69,6 @@ public void start(Stage primaryStage) {
     gridPane1.setHgap(10);
     gridPane1.setVgap(10);
 
-
     BPane1.setTop(menuBar1);
     BPane1.setLeft(hbo1);
     BPane1.setBottom(vbox2);

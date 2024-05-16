@@ -20,10 +20,6 @@ public class IHMPendu extends Application {
         String motADeviner = "";
         for (int i = 0;i < motImport.length(); i++){
             for (int j = 0; j < lettreDecouverte.length; j++){
-                if (lettreDecouverte[j] == motImport[i]){
-
-
-                }
             }
             motADeviner = motADeviner + '*';
         }
