@@ -1,6 +1,7 @@
 package fr.amu.iut.exercice4;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,6 +11,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Palette extends Application {
@@ -27,60 +30,46 @@ public class Palette extends Application {
     private Pane panneau;
     private HBox bas;
 
-
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.nbVert = 0;
-        this.nbRouge = 0;
-        this.nbBleu = 0;
-        this.vert = new Button("Vert");
-        this.rouge = new Button("Rouge");
-        this.bleu = new Button("Bleu");
-        this.root = new BorderPane();
-        this.label = new Label();
-        this.panneau = new Pane();
-        this.bas = new HBox();
-        HBox hBox1 = new HBox(label);
+    public void start(Stage primaryStage) {
 
-        vert.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
-            if(nbVert == 2){
-                label.setText("Vert choisi 3 fois");
-                panneau.setStyle("-fx-background-color:green;");
-            }
-            else{
-                nbVert++;
-            }
-        });
-        rouge.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
-            if(nbRouge == 2){
-                label.setText("Rouge choisi 3 fois");
-                panneau.setStyle("-fx-background-color:red;");
-            }
-            else{
-                nbRouge++;
-            }
-        });
-        bleu.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
-            if(nbBleu == 2){
-                label.setText("Bleu choisi 3 fois");
-                panneau.setStyle("-fx-background-color:blue;");
-            }
-            else{
-                nbBleu++;
-            }
-        });
+        root = new BorderPane();
 
-        hBox1.setAlignment(Pos.CENTER);
+        label = new Label();
+        label.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        BorderPane.setAlignment(label, Pos.CENTER);
+
+        panneau = new Pane();
+        panneau.setPrefSize(400,200);
+
+        bas = new HBox(10);
         bas.setAlignment(Pos.CENTER);
-        bas.setSpacing(10);
+        bas.setPadding(new Insets(10,5,10,5));
+
+        vert = new Button("Vert");
+        rouge = new Button("Rouge");
+        bleu = new Button("Bleu");
+        rouge.setOnAction(event -> {
+            label.setText("Rouge choisi " + ++nbRouge + " fois");
+            panneau.setStyle("-fx-background-color: #F21411");
+        });
+        vert.setOnAction(event -> {
+            label.setText("Vert choisi " + ++nbVert + " fois");
+            panneau.setStyle("-fx-background-color: #31BCA4");
+        });
+        bleu.setOnAction(event -> {
+            label.setText("Bleu choisi " + ++nbBleu + " fois");
+            panneau.setStyle("-fx-background-color: #3273A4");
+        });
         bas.getChildren().addAll(vert, rouge, bleu);
-        root.setTop(hBox1);
+
         root.setCenter(panneau);
+        root.setTop(label);
         root.setBottom(bas);
-        Scene scene1 = new Scene(root, 600, 400);
-        primaryStage.setScene(scene1);
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }
-

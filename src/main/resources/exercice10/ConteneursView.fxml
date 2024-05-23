@@ -1,2 +1,83 @@
-<?import javafx.scene.layout.BorderPane?>
-<BorderPane></BorderPane>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <left>
+        <HBox>
+            <VBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
+                <children>
+                    <Label text="Boutons :"/>
+                    <Button mnemonicParsing="false" text="Bouton 1"/>
+                    <Button mnemonicParsing="false" text="Bouton 2"/>
+                    <Button mnemonicParsing="false" text="Bouton 3"/>
+                </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0"/>
+
+        </HBox>
+    </left>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New"/>
+                        <MenuItem mnemonicParsing="false" text="Open"/>
+                        <MenuItem mnemonicParsing="false" text="Save"/>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Cut"/>
+                        <MenuItem mnemonicParsing="false" text="Copy"/>
+                        <MenuItem mnemonicParsing="false" text="Paste"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help"/>
+            </menus>
+        </MenuBar>
+    </top>
+    <bottom>
+        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <children>
+                <Separator orientation="HORIZONTAL"/>
+                <Label text="Ceci est un label de bas de page" BorderPane.alignment="CENTER"/>
+            </children>
+        </VBox>
+    </bottom>
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <GridPane alignment="CENTER" hgap="10.0" vgap="5.0">
+                <children>
+                    <Label text="Name:"/>
+                    <Label text="Email:" GridPane.rowIndex="1"/>
+                    <Label text="Password:" GridPane.rowIndex="2"/>
+                    <TextField alignment="TOP_LEFT" GridPane.columnIndex="1"/>
+                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                </children>
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+            </GridPane>
+            <HBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
+                <children>
+                    <Button mnemonicParsing="false" text="Submit"/>
+                    <Button mnemonicParsing="false" text="Cancel"/>
+                </children>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
